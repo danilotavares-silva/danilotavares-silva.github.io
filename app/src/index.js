@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles.css';
+import Routes from "./routes"
 
 ReactDOM.render(
   <>
-    <h1>Oi</h1>
+    <Routes/>
   </>,
   document.getElementById('root')
 );
