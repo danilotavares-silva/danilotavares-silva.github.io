@@ -18,13 +18,13 @@ export default function Cadastro() {
     const history = useHistory();
 
     async function onSubmit(data){
-        const resposta = await fetch('https://desafio-m03.herokuapp.com/usuarios',{
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-type':'application/json'
-            }
-        });
+        // const resposta = await fetch('https://desafio-m03.herokuapp.com/usuarios',{
+        //     method: 'POST',
+        //     body: JSON.stringify(data),
+        //     headers: {
+        //         'Content-type':'application/json'
+        //     }
+        // });
 
         history.push('/');
     }
