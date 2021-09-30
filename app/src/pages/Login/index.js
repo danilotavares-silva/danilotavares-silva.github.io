@@ -6,13 +6,28 @@ import {
     Button,
     Typography
 } from '@material-ui/core'
-
 import useStyles from "./styles.js"
 import { Link } from "react-router-dom"
+import { useForm } from "react-hook-form"
 
 export default function Login() {
 
     const classes = useStyles();
+    const { register, handleSubmit } = useForm();
+
+    async function onSubmit(data){
+        const resposta = await fetch('https://desafio-m03.herokuapp.com/login',{
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-type':'application/json'
+            }
+        });
+
+        const dados = await resposta.json();
+
+        console.log(dados);
+    }
 
     return (
         <div className={classes.root}>
@@ -22,10 +37,18 @@ export default function Login() {
                         className={classes.form}
                         noValidate
                         autoComplete="off"
+                        onSubmit={handleSubmit(onSubmit)}
                     >
                         <Typography variant="h4">Login</Typography>
-                        <TextField className={classes.email} label="E-mail"/>
-                        <TextField className={classes.senha} label="Senha" type="password"/>
+                        <TextField className={classes.email} 
+                            label="E-mail" 
+                            {...register('email', {required:true}
+                        )}/>
+                        <TextField className={classes.senha} 
+                            label="Senha" 
+                            type="password" 
+                            {...register('senha', {required:true}
+                        )}/>
                         <Button className={classes.botao} type="submit">
                             Entrar
                         </Button>
