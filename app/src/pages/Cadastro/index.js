@@ -9,6 +9,7 @@ import {
 import useStyles from "./styles.js"
 import { Link, useHistory } from "react-router-dom"
 import { useForm } from "react-hook-form"
+import { ReactComponent as LogoBlack } from "../../assets/logoblack.svg";
 
 export default function Cadastro() {
 
@@ -38,7 +39,9 @@ export default function Cadastro() {
                         autoComplete="off"
                         onSubmit={handleSubmit(onSubmit)}
                     >
-                        <Typography variant="h4">Cadastro</Typography>
+                        <div className={classes.logo}>
+                            <LogoBlack/>
+                        </div>
                         <TextField className={classes.email} 
                             label="Nome" 
                             {...register('nome', {required:true})}

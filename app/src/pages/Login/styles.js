@@ -30,11 +30,11 @@ const useStyles = makeStyles((theme) => ({
     form:{
         display:'flex',
         flexDirection: 'column',
-        textAlign: 'center',
-        "& h4":{
-            marginBottom: 92
-        },
-        
+        textAlign:'center',
+    },
+
+    logo:{
+        marginBottom: 92,
     },
 
     email: {

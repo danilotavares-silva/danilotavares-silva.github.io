@@ -7,15 +7,18 @@ import {
     Typography
 } from '@material-ui/core'
 import useStyles from "./styles.js"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import { AuthContext } from '../../routes.js'
+import { ReactComponent as LogoBlack } from "../../assets/logoblack.svg";
+
 
 export default function Login() {
 
     const classes = useStyles();
     const { register, handleSubmit } = useForm();
     const { logar } = useContext (AuthContext);
+    const history = useHistory();
 
     async function onSubmit(data){
         const resposta = await fetch('https://desafio-m03.herokuapp.com/login',{
@@ -27,9 +30,9 @@ export default function Login() {
         });
 
         const {token} = await resposta.json();
-
         logar(token);
 
+        history.push('/home');
     }
 
     return (
@@ -42,7 +45,9 @@ export default function Login() {
                         autoComplete="off"
                         onSubmit={handleSubmit(onSubmit)}
                     >
-                        <Typography variant="h4">Login</Typography>
+                        <div className={classes.logo}>
+                            <LogoBlack/>
+                        </div>
                         <TextField className={classes.email} 
                             label="E-mail" 
                             {...register('email', {required:true})}

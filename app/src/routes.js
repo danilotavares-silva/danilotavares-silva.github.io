@@ -1,17 +1,25 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 import {
     BrowserRouter as Router,
     Switch,
     Route,
-} from "react-router-dom"
+    Redirect,
+} from "react-router-dom";
 
-import Cadastro from './pages/Cadastro'
-import Login from './pages/Login'
-
+import Login from './pages/Login';
+import Cadastro from './pages/Cadastro';
+import Home from './pages/Home';
+import Main from './components/Main';
 
 export const AuthContext = createContext();
 
+function RotasProtegidas(props){
+    const { token } = useContext(AuthContext);
 
+    return (
+        <Route render={() => (true ? props.children : <Redirect to="/" />)} />
+    )
+}
 
 function Routes() {
 
@@ -31,8 +39,13 @@ function Routes() {
         <AuthContext.Provider value={{token, logar, deslogar}}>
             <Router>
                 <Switch>
+                    <Route path="/" exact component={Login}/>
                     <Route path="/cadastro" component={Cadastro}/>
-                    <Route path="/" component={Login}/>
+                    <RotasProtegidas>
+                        <Main>
+                            <Route path= "/home" exact component={Home}/>
+                        </Main>
+                    </RotasProtegidas>
                 </Switch>
             </Router> 
         </AuthContext.Provider>
