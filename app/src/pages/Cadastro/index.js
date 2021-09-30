@@ -7,16 +7,25 @@ import {
     Typography
 } from '@material-ui/core'
 import useStyles from "./styles.js"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import { useForm } from "react-hook-form"
 
 export default function Cadastro() {
 
     const classes = useStyles();
     const { register, handleSubmit } = useForm();
+    const history = useHistory();
 
     async function onSubmit(data){
-        console.log(data);
+        const resposta = await fetch('https://desafio-m03.herokuapp.com/usuarios',{
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-type':'application/json'
+            }
+        });
+
+        history.push('/');
     }
 
     return (
@@ -32,17 +41,20 @@ export default function Cadastro() {
                         <Typography variant="h4">Cadastro</Typography>
                         <TextField className={classes.email} 
                             label="Nome" 
-                            {...register('nome', {required:true}
-                        )}/>
+                            {...register('nome', {required:true})}
+
+                        />
                         <TextField className={classes.email} 
                             label="E-mail" 
-                            {...register('email', {required:true}
-                        )}/>
+                            {...register('email', {required:true})}
+
+                        />
                         <TextField className={classes.senha} 
                             label="Senha" 
                             type="password" 
-                            {...register('senha', {required:true}
-                        )}/>
+                            {...register('senha', {required:true})}
+
+                        />
                         <Button className={classes.botao} type="submit">
                             Criar conta
                         </Button>

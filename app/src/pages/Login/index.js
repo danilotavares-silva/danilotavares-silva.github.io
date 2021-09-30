@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {
     Card,
     CardContent,
@@ -9,11 +9,13 @@ import {
 import useStyles from "./styles.js"
 import { Link } from "react-router-dom"
 import { useForm } from "react-hook-form"
+import { AuthContext } from '../../routes.js'
 
 export default function Login() {
 
     const classes = useStyles();
     const { register, handleSubmit } = useForm();
+    const { logar } = useContext (AuthContext);
 
     async function onSubmit(data){
         const resposta = await fetch('https://desafio-m03.herokuapp.com/login',{
@@ -24,9 +26,10 @@ export default function Login() {
             }
         });
 
-        const dados = await resposta.json();
+        const {token} = await resposta.json();
 
-        console.log(dados);
+        logar(token);
+
     }
 
     return (
@@ -42,13 +45,15 @@ export default function Login() {
                         <Typography variant="h4">Login</Typography>
                         <TextField className={classes.email} 
                             label="E-mail" 
-                            {...register('email', {required:true}
-                        )}/>
+                            {...register('email', {required:true})}
+
+                            />
                         <TextField className={classes.senha} 
                             label="Senha" 
                             type="password" 
-                            {...register('senha', {required:true}
-                        )}/>
+                            {...register('senha', {required:true})}
+
+                        />
                         <Button className={classes.botao} type="submit">
                             Entrar
                         </Button>
