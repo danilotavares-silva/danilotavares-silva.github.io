@@ -3,21 +3,12 @@ import { ReactComponent as Cobrancas } from "../../assets/cobrancas.svg";
 import { ReactComponent as HomeImg } from "../../assets/home.svg";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 
-import React, { useContext } from 'react'
-import { useHistory, useLocation } from 'react-router-dom';
-import useStyles from './styles';
-import { AuthContext } from '../../routes';
+import React from 'react'
+import { useHistory } from 'react-router-dom';;
 
 function Sidebar(){
-    const location = useLocation();
     const history = useHistory();
-    // const classes = useStyles();
-    const { deslogar } = useContext(AuthContext);
-    
-    function handleLogout(){
-        deslogar();
-        history.push('/');
-    }
+
 
     return (
         <div>

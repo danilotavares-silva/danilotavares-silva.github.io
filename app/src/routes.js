@@ -17,13 +17,13 @@ function RotasProtegidas(props){
     const { token } = useContext(AuthContext);
 
     return (
-        <Route render={() => (true ? props.children : <Redirect to="/" />)} />
+        <Route render={() => (token ? props.children : <Redirect to="/" />)} />
     )
 }
 
 function Routes() {
 
-    const [token, setToken] = useState("");
+    const [token, setToken] = useState("a");
 
     function logar(novoToken){
         setToken(novoToken);

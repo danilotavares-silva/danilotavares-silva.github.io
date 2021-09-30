@@ -4,12 +4,9 @@ import {
     Typography,
 } from '@material-ui/core'
 
-import useStyles from "./styles";
 import Sidebar from '../Sidebar';
 
 export default function Main({children}) {
-    // const classes = useStyles();
-
     return (
         <div >
             <Sidebar/>
