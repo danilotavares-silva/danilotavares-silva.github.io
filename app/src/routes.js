@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import {
     BrowserRouter as Router,
     Switch,
@@ -10,8 +10,7 @@ import Login from './pages/Login';
 import Cadastro from './pages/Cadastro';
 import Home from './pages/Home';
 import Main from './components/Main';
-
-export const AuthContext = createContext();
+import { AuthContext } from './contexts/AuthContext';
 
 function RotasProtegidas(props){
     const { token } = useContext(AuthContext);
@@ -23,14 +22,12 @@ function RotasProtegidas(props){
 
 function Routes() {
 
-    const [token, setToken] = useState("a");
+    const [token, setToken] = useState("");
 
     function logar(novoToken){
         setToken(novoToken);
-
         console.log('loguei')
     }
-
     function deslogar(){
         setToken('');
     }

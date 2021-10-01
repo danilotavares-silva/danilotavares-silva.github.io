@@ -1,70 +1,36 @@
-import React, { useContext } from 'react'
-import {
-    Card,
-    CardContent,
-    TextField,
-    Button,
-    Typography
-} from '@material-ui/core'
-import useStyles from "./styles.js"
-import { Link, useHistory } from "react-router-dom"
-import { useForm } from "react-hook-form"
-import { AuthContext } from '../../routes.js'
-import { ReactComponent as LogoBlack } from "../../assets/logoblack.svg";
+import React, { useState } from 'react';
+import { Link } from "react-router-dom"
 
+import { Card, Typography, Backdrop, CircularProgress, Snackbar } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
+
+import FormLogin from '../../components/FormLogin'
+import useStyles from "./styles.js"
 
 export default function Login() {
 
+    const [isLoading, setIsLoading] = useState(false);
+    const [requestError, setRequestError] = useState('');
+    
     const classes = useStyles();
-    const { register, handleSubmit } = useForm();
-    const { logar } = useContext (AuthContext);
-    const history = useHistory();
 
-    async function onSubmit(data){
-        const resposta = await fetch('https://desafio-m03.herokuapp.com/login',{
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-type':'application/json'
-            }
-        });
-
-        const {token} = await resposta.json();
-        logar(token);
-
-        history.push('/home');
+    function handleOnAlertClose() {
+        setRequestError('');
     }
 
     return (
         <div className={classes.root}>
             <Card className={classes.card}>
-                <CardContent>
-                    <form
-                        className={classes.form}
-                        noValidate
-                        autoComplete="off"
-                        onSubmit={handleSubmit(onSubmit)}
-                    >
-                        <div className={classes.logo}>
-                            <LogoBlack/>
-                        </div>
-                        <TextField className={classes.email} 
-                            label="E-mail" 
-                            {...register('email', {required:true})}
-
-                            />
-                        <TextField className={classes.senha} 
-                            label="Senha" 
-                            type="password" 
-                            {...register('senha', {required:true})}
-
-                        />
-                        <Button className={classes.botao} type="submit">
-                            Entrar
-                        </Button>
-                    </form>
-                </CardContent>
+                <FormLogin setRequestError={setRequestError} setIsLoading={setIsLoading} />
             </Card>
+            <Backdrop className={classes.backdrop} open={isLoading}>
+                <CircularProgress color="inherit" />
+            </Backdrop>
+            <Snackbar open={!!requestError} autoHideDuration={10000} onClose={handleOnAlertClose}>
+                <Alert onClose={handleOnAlertClose} severity="error">
+                    {requestError}
+                </Alert>
+            </Snackbar>
             <Typography variant="body2">
                 Primeira vez aqui? <Link className={classes.link} to='/cadastro'>Crie uma conta</Link>
             </Typography>
