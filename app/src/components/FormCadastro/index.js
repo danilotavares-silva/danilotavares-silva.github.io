@@ -53,18 +53,20 @@ function FormCadastro({ setRequestError, setIsLoading }) {
             </div>
             <TextField className={classes.email}
                 label="Nome"
+                error={!!errors.nome}
                 {...register('nome', { required: true })}
 
             />
             <TextField className={classes.email}
                 label="E-mail"
+                error={!!errors.email}
                 {...register('email', { required: true })}
 
             />
             <PasswordInput
                 label="Senha"
                 id="senha"
-                error={!!errors.email}
+                error={!!errors.senha}
                 register={() => register('senha', { required: true })}
             />
             <Button className={classes.botao} type="submit">
