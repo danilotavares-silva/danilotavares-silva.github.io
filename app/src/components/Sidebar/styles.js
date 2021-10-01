@@ -4,7 +4,7 @@ const useStyles = makeStyles(() => ({
     root:{
         display: 'flex',
         flexDirection:'column',
-        minHeight: '100vh',
+        height: '965px',
         backgroundColor: '#263238',
         width: 264,
         "& p":{
@@ -13,7 +13,11 @@ const useStyles = makeStyles(() => ({
             color: "#263238",
         },
     },
-    
+
+    logo:{
+        padding: '32px 0px 58px 48px'
+    },
+
     linkSidebar:{
         display: 'flex',
         alignItems: 'center',
@@ -22,10 +26,6 @@ const useStyles = makeStyles(() => ({
             backgroundColor: "#374952",
             cursor:'pointer'
         }
-    },
-
-    logo:{
-        padding: '32px 0px 58px 48px'
     },
 
     letraSidebar:{
@@ -39,11 +39,11 @@ const useStyles = makeStyles(() => ({
         color: '#fff',
         boxShadow: 'none',
         alignSelf: 'center',
-        padding: "11px 60px",
+        padding: "8px",
         borderRadius: 20,
         marginTop: 310,
         backgroundColor: "#DA0175",
-        width: 226,
+        width: 220,
         textTransform:'none',
         fontSize: 14,
         "&:hover":{

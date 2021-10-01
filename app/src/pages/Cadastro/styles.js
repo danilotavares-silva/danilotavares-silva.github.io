@@ -38,6 +38,10 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: 92,
     },
 
+    nome: {
+        marginBottom: 76,
+    },
+
     email: {
         marginBottom: 76,
     },
