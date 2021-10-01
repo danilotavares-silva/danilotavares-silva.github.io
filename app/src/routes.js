@@ -22,7 +22,7 @@ function RotasProtegidas(props){
 
 function Routes() {
 
-    const [token, setToken] = useState("");
+    const [token, setToken] = useState("a");
 
     function logar(novoToken){
         setToken(novoToken);

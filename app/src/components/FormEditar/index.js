@@ -1,31 +1,29 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { useForm } from 'react-hook-form';
 import { useHistory } from "react-router-dom";
 
 import { Button, TextField } from '@material-ui/core';
 
 import PasswordInput from '../Passwordinput';
-import { AuthContext } from '../../contexts/AuthContext';
 import { ReactComponent as LogoBlack } from "../../assets/logoblack.svg";
 import useStyles from '../../pages/Login/styles';
 
-function FormLogin({ setRequestError, setIsLoading }) {
+function FormCadastro({ setRequestError, setIsLoading }) {
 
     const classes = useStyles();
-    const { logar } = useContext(AuthContext);
     const { handleSubmit, register, formState: { errors } } = useForm();
     const history = useHistory();
 
-    async function entrar(data) {
-
+    async function entrar(data){
+        
         setRequestError('');
         setIsLoading(true);
 
-        const resposta = await fetch('https://desafio-m03.herokuapp.com/login', {
+        const resposta = await fetch('https://desafio-m03.herokuapp.com/usuarios',{
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
-                'Content-type': 'application/json'
+                'Content-type':'application/json'
             }
         });
 
@@ -36,8 +34,7 @@ function FormLogin({ setRequestError, setIsLoading }) {
         console.log(dados);
 
         if (resposta.ok) {
-            logar(dados.token);
-            history.push('/home');
+            history.push('/');
             return;
         }
 
@@ -45,26 +42,50 @@ function FormLogin({ setRequestError, setIsLoading }) {
     }
 
     return (
-        <form className={classes.form} onSubmit={handleSubmit(entrar)}>
+        <form
+            className={classes.form}
+            noValidate
+            autoComplete="off"
+            onSubmit={handleSubmit(entrar)}
+        >
             <div className={classes.logo}>
                 <LogoBlack />
             </div>
             <TextField className={classes.email}
+                label="Nome"
+                error={!!errors.nome}
+                {...register('nome', { required: true })}
+
+            />
+            <TextField className={classes.email}
                 label="E-mail"
                 error={!!errors.email}
                 {...register('email', { required: true })}
+
             />
             <PasswordInput
-                label="Senha"
+                label="Nova senha"
                 id="senha"
                 error={!!errors.senha}
                 register={() => register('senha', { required: true })}
             />
-            <Button type="submit" className={classes.botao} >
-                Entrar
+            <TextField className={classes.email}
+                label="Telefone"
+                error={!!errors.telefone}
+                {...register('telefone', { required: true })}
+
+            />
+            <TextField className={classes.email}
+                label="CPF"
+                error={!!errors.cpf}
+                {...register('email', { required: true })}
+
+            />
+            <Button className={classes.botao} type="submit">
+                Editar conta
             </Button>
         </form>
     )
 }
 
-export default FormLogin;
+export default FormCadastro;

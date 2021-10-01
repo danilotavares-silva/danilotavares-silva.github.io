@@ -18,10 +18,10 @@ function Sidebar(){
             <div className={classes.linkSidebar} onClick={() => history.replace('/home')}>
                 <HomeImg/><h1 className={classes.letraSidebar}>HOME</h1>
             </div>
-            <div className={classes.linkSidebar} onClick={() => history.replace('/home')}>
+            <div className={classes.linkSidebar} onClick={() => history.replace('/cobrancas')}>
                 <Cobrancas/><h1 className={classes.letraSidebar}>COBRANÇAS</h1>
             </div>
-            <div className={classes.linkSidebar} onClick={() => history.replace('/home')}>
+            <div className={classes.linkSidebar} onClick={() => history.replace('/clientes')}>
                 <Clientes/><h1 className={classes.letraSidebar}>CLIENTES</h1>
             </div>
             <Button className={classes.botao}>
