@@ -1,5 +1,5 @@
 import React from "react";
-
+import useStyles from "./styles.js";
 import {
     Typography,
 } from '@material-ui/core'
@@ -7,11 +7,12 @@ import {
 import Sidebar from '../Sidebar';
 
 export default function Main({children}) {
+    const classes = useStyles();
+
     return (
-        <div >
+        <div className={classes.root}>
             <Sidebar/>
             <div>
-                <Typography variant='h2'>Nome da loja</Typography>
                 {children}
             </div>
         </div>

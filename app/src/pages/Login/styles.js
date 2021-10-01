@@ -41,10 +41,6 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: 76,
     },
 
-    senha:{
-        marginBottom: 79,
-    },
-
     botao:{
         color: '#fff',
         boxShadow: 'none',
@@ -52,11 +48,16 @@ const useStyles = makeStyles((theme) => ({
         marginBottom:58,
         padding: "11px 60px",
         borderRadius: 20,
+        textTransform:'none',
         backgroundColor: "rgba(218, 1, 117, 0.35)",
         "&:hover":{
             backgroundColor: "rgba(218, 1, 117)"
         }
     },
+    backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
+    }
 }));
 
 export default useStyles;

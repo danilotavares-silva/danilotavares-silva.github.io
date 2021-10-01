@@ -53,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
         padding: "11px 60px",
         borderRadius: 20,
         backgroundColor: "rgba(218, 1, 117, 0.35)",
+        textTransform:'none',
         "&:hover":{
             backgroundColor: "rgba(218, 1, 117)"
         }

@@ -27,7 +27,6 @@ function Routes() {
 
     function logar(novoToken){
         setToken(novoToken);
-
         console.log('loguei')
     }
 

@@ -10,21 +10,22 @@ import useStyles from "./styles.js"
 import { Link, useHistory } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import { ReactComponent as LogoBlack } from "../../assets/logoblack.svg";
+import PasswordInput from '../../components/Passwordinput'
 
 export default function Cadastro() {
 
     const classes = useStyles();
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const history = useHistory();
 
     async function onSubmit(data){
-        // const resposta = await fetch('https://desafio-m03.herokuapp.com/usuarios',{
-        //     method: 'POST',
-        //     body: JSON.stringify(data),
-        //     headers: {
-        //         'Content-type':'application/json'
-        //     }
-        // });
+        const resposta = await fetch('https://desafio-m03.herokuapp.com/usuarios',{
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-type':'application/json'
+            }
+        });
 
         history.push('/');
     }
@@ -52,11 +53,12 @@ export default function Cadastro() {
                             {...register('email', {required:true})}
 
                         />
-                        <TextField className={classes.senha} 
+                        <PasswordInput
                             label="Senha" 
+                            id="senha"
+                            error={!!errors.email}
                             type="password" 
                             {...register('senha', {required:true})}
-
                         />
                         <Button className={classes.botao} type="submit">
                             Criar conta
