@@ -17,9 +17,8 @@ const useStyles = makeStyles((theme) => ({
     },
 
     card:{
-        boxSizing: 'border-box',
         width: 405,
-        padding:'48px 72px 0px 72px',
+        padding:'0px 72px 0px 72px',
         boxShadow: "0px 0px 32px rgba(0, 0, 0, 0.1)",
         borderRadius: 16,
         marginBottom: 32,
@@ -34,10 +33,6 @@ const useStyles = makeStyles((theme) => ({
         textAlign:'center',
     },
 
-    logo:{
-        marginBottom: 92,
-    },
-
     email: {
         marginBottom: 76,
     },
@@ -46,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
         color: '#fff',
         boxShadow: 'none',
         alignSelf: 'center',
-        marginBottom:58,
+        marginBottom:52,
         padding: "11px 60px",
         borderRadius: 20,
         textTransform:'none',
@@ -55,12 +50,19 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: "rgba(218, 1, 117)"
         }
     },
-
-    backdrop: {
-        zIndex: theme.zIndex.drawer + 1,
-        color: '#fff',
+    tituloEditar: {
+        fontFamily:'Montserrat',
+        fontSize:24,
+        fontWeight:'normal',
+        textAlign:'left',
+        marginBottom:59,
     },
 
+    close:{
+        display:'flex',
+        justifyContent:'flex-end',
+        marginBottom:14
+    },
 }));
 
 export default useStyles;

@@ -27,12 +27,12 @@ export default function Login() {
                 <CircularProgress color="inherit" />
             </Backdrop>
             <Snackbar open={!!requestError} autoHideDuration={10000} onClose={handleOnAlertClose}>
-                <Alert onClose={handleOnAlertClose} severity="error">
+                <Alert variant="filled" onClose={handleOnAlertClose} severity="error">
                     {requestError}
                 </Alert>
             </Snackbar>
             <Typography variant="body2">
-                Primeira vez aqui? <Link className={classes.link} to='/cadastro'>Crie uma conta</Link>
+                Não tem uma conta? <Link className={classes.link} to='/cadastro'>Cadastre-se</Link>
             </Typography>
         </div>
     )

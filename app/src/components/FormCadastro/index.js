@@ -6,7 +6,7 @@ import { Button, TextField } from '@material-ui/core';
 
 import PasswordInput from '../Passwordinput';
 import { ReactComponent as LogoBlack } from "../../assets/logoblack.svg";
-import useStyles from '../../pages/Login/styles';
+import useStyles from '../../pages/Cadastro/styles';
 
 function FormCadastro({ setRequestError, setIsLoading }) {
 
@@ -51,7 +51,7 @@ function FormCadastro({ setRequestError, setIsLoading }) {
             <div className={classes.logo}>
                 <LogoBlack />
             </div>
-            <TextField className={classes.email}
+            <TextField className={classes.nome}
                 label="Nome"
                 error={!!errors.nome}
                 {...register('nome', { required: true })}

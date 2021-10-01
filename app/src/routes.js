@@ -8,8 +8,12 @@ import {
 
 import Login from './pages/Login';
 import Cadastro from './pages/Cadastro';
-import Home from './pages/Home';
+
 import Main from './components/Main';
+import Home from './pages/Home';
+import Cobrancas from './pages/Cobrancas';
+import Clientes from './pages/Clientes';
+
 import { AuthContext } from './contexts/AuthContext';
 
 function RotasProtegidas(props){
@@ -41,6 +45,8 @@ function Routes() {
                     <RotasProtegidas>
                         <Main>
                             <Route path= "/home" exact component={Home}/>
+                            <Route path= "/cobrancas" exact component={Cobrancas}/>
+                            <Route path= "/clientes" exact component={Clientes}/>
                         </Main>
                     </RotasProtegidas>
                 </Switch>
