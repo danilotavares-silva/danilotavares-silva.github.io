@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
         width: 405,
         padding:'48px 72px 0px 72px',
         borderRadius: 16,
+        boxShadow: "0px 0px 32px rgba(0, 0, 0, 0.1)",
         marginBottom: 32,
         "& > div":{
            padding: 0

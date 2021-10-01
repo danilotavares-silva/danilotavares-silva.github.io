@@ -54,11 +54,10 @@ export default function Cadastro() {
 
                         />
                         <PasswordInput
-                            label="Senha" 
+                            label="Senha"
                             id="senha"
                             error={!!errors.email}
-                            type="password" 
-                            {...register('senha', {required:true})}
+                            register={()=> register('senha', { required: true })}
                         />
                         <Button className={classes.botao} type="submit">
                             Criar conta
