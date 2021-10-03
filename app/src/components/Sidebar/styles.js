@@ -6,7 +6,7 @@ const useStyles = makeStyles(() => ({
         flexDirection:'column',
         height: '965px',
         backgroundColor: '#263238',
-        width: 264,
+        minWidth: 264,
         "& p":{
             fontSize: 14,
             textAlign: 'center',

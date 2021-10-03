@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     card:{
+        boxSizing:'border-box',
         width: 405,
         padding:'0px 72px 0px 72px',
         boxShadow: "0px 0px 32px rgba(0, 0, 0, 0.1)",
@@ -33,7 +34,20 @@ const useStyles = makeStyles((theme) => ({
         textAlign:'center',
     },
 
+
+    nome: {
+        marginBottom: 76,
+    },
+
     email: {
+        marginBottom: 76,
+    },
+
+    telefone: {
+        marginBottom: 76,
+    },
+
+    cpf: {
         marginBottom: 76,
     },
 
@@ -61,7 +75,9 @@ const useStyles = makeStyles((theme) => ({
     close:{
         display:'flex',
         justifyContent:'flex-end',
-        marginBottom:14
+        marginBottom:14,
+        cursor:'pointer',
+        marginTop:35,
     },
 }));
 

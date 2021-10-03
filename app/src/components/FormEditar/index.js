@@ -8,7 +8,7 @@ import { ReactComponent as Close } from "../../assets/close.svg";
 import PasswordInput from '../Passwordinput';
 import useStyles from './styles';
 
-function FormEditar({ setRequestError, setIsLoading }) {
+function FormEditar({ setRequestError, setIsLoading, onClose }) {
 
     const classes = useStyles();
     const { handleSubmit, register, formState: { errors } } = useForm();
@@ -51,10 +51,10 @@ function FormEditar({ setRequestError, setIsLoading }) {
                 onSubmit={handleSubmit(entrar)}
             >
                 <div className={classes.close} >
-                    <Close />
+                    <Close onClick={onClose}/>
                 </div>
-                <h1 className={classes.tituloEditar}>// EDITAR USUÁRIO</h1>
-                <TextField className={classes.email}
+                <h1 className={classes.tituloEditar}>EDITAR USUÁRIO</h1>
+                <TextField className={classes.nome}
                     label="Nome"
                     error={!!errors.nome}
                     {...register('nome', { required: true })}
@@ -72,13 +72,13 @@ function FormEditar({ setRequestError, setIsLoading }) {
                     error={!!errors.senha}
                     register={() => register('senha', { required: true })}
                 />
-                <TextField className={classes.email}
+                <TextField className={classes.telefone}
                     label="Telefone"
                     error={!!errors.telefone}
                     {...register('telefone', { required: true })}
 
                 />
-                <TextField className={classes.email}
+                <TextField className={classes.cpf}
                     label="CPF"
                     error={!!errors.cpf}
                     {...register('email', { required: true })}
@@ -93,4 +93,4 @@ function FormEditar({ setRequestError, setIsLoading }) {
     )
 }
 
-export default Form;
+export default FormEditar;
