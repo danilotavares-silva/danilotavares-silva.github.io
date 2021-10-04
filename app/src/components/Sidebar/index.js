@@ -1,12 +1,12 @@
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import { Button } from "@material-ui/core";
+
 import { ReactComponent as Clientes } from "../../assets/clientes.svg";
 import { ReactComponent as Cobrancas } from "../../assets/cobrancas.svg";
 import { ReactComponent as HomeImg } from "../../assets/home.svg";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
-
-import React from 'react';
 import useStyles from "./styles.js";
-import { useHistory } from 'react-router-dom';
-import { Button } from "@material-ui/core";
 
 function Sidebar(){
     const history = useHistory();
@@ -15,10 +15,10 @@ function Sidebar(){
     return (
         <div className={classes.root}>
             <Logo className={classes.logo}/>
-            <div className={classes.linkSidebar} onClick={() => history.replace('/home')}>
+            <div className={classes.linkSidebar} onClick={() =>history.replace('/home')}>
                 <HomeImg/><h1 className={classes.letraSidebar}>HOME</h1>
             </div>
-            <div className={classes.linkSidebar} onClick={() => history.replace('/cobrancas')}>
+            <div className={classes.linkSidebar} onClick={() => history.replace('/home')}>
                 <Cobrancas/><h1 className={classes.letraSidebar}>COBRANÇAS</h1>
             </div>
             <div className={classes.linkSidebar} onClick={() => history.replace('/clientes')}>

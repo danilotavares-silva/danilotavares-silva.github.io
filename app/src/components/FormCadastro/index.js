@@ -19,7 +19,7 @@ function FormCadastro({ setRequestError, setIsLoading }) {
         setRequestError('');
         setIsLoading(true);
 
-        const resposta = await fetch('https://desafio-m03.herokuapp.com/usuarios',{
+        const resposta = await fetch('https://api-desafio-5.herokuapp.com/usuarios',{
             method: 'POST',
             body: JSON.stringify(data),
             headers: {

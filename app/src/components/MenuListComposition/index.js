@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useContext } from 'react';
+
 import Button from '@mui/material/Button';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import Grow from '@mui/material/Grow';
@@ -8,15 +9,15 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import Stack from '@mui/material/Stack';
-import { ReactComponent as IconPerfil } from "../../assets/iconPerfil.svg";
-import { ReactComponent as Editar } from "../../assets/editar.svg";
-import { ReactComponent as Deslogar } from "../../assets/deslogar.svg";
 import { Typography } from "@material-ui/core";
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+
+import { ReactComponent as IconPerfil } from "../../assets/iconPerfil.svg";
+import { ReactComponent as Editar } from "../../assets/editar.svg";
+import { ReactComponent as Deslogar } from "../../assets/deslogar.svg";
 import FormEditar from "../FormEditar"
 import { AuthContext } from '../../contexts/AuthContext';
-
 
 function BasicModal() {
   const [open, setOpen] = React.useState(false);
@@ -27,7 +28,7 @@ function BasicModal() {
     <div>
       <Button onClick={handleOpen}>
         <Editar />
-        <Typography variant="caption" display="block" gutterBottom>
+        <Typography sx={{textTransform:'none'}} variant="caption" >
           Editar
         </Typography>
       </Button>
@@ -75,7 +76,6 @@ export default function MenuListComposition() {
     }
   }
 
-  // return focus to the button when we transitioned from !open -> open
   const prevOpen = React.useRef(open);
   React.useEffect(() => {
     if (prevOpen.current === true && open === false) {
@@ -117,18 +117,31 @@ export default function MenuListComposition() {
               <Paper sx={{marginLeft:30}}>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList
+                    sx={{
+                      display:'flex',
+                      flexDirection: 'column',
+                      justifyContent:'space-between',
+                      alignItems:'center',
+                      }}
                     autoFocusItem={open}
                     id="composition-menu"
                     aria-labelledby="composition-button"
                     onKeyDown={handleListKeyDown}
                   >
-                    <MenuItem>
-                        <BasicModal/>
-                    </MenuItem>
-                    <MenuItem sx={{
+                    <MenuItem 
+                    sx={{
                       display:'flex',
                       alignItems:'center',
-                      }} onClick={deslogar}>
+                      }}>
+                        <BasicModal/>
+                    </MenuItem>
+                    <MenuItem  
+                    sx={{
+                      display:'flex',
+                      justifyContent:'space-between',
+                      alignItems:'center',
+                      }}
+                    onClick={deslogar}>
                         <Deslogar />
                         <Typography variant="caption" display="block" gutterBottom>
                           Deslogar

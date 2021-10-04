@@ -4,7 +4,7 @@ const useStyles = makeStyles(() => ({
     root:{
         display: 'flex',
         flexDirection:'column',
-        height: '965px',
+        minHeight: 936,
         backgroundColor: '#263238',
         minWidth: 264,
         "& p":{

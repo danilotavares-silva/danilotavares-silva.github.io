@@ -1,15 +1,19 @@
 import React from "react";
-import MenuListComposition from "../../components/MenuListComposition";
 import useStyles from "./styles.js";
+import CardClientes from "../../components/CardClientes/index.js";
+import CardCobrancas from "../../components/CardCobrancas/index.js";
 
 export default function Home() {
   const classes = useStyles(); 
 
-
   return (
-    <div className={classes.header}>
-      <MenuListComposition className={classes.iconPerfil}/>
+    <div className={classes.root}>
+      <div>
+        <CardClientes/>
+      </div>
+      <div>
+        <CardCobrancas/>
+      </div>
     </div>
-    
   );
 }

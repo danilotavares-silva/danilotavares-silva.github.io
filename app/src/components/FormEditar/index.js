@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useForm } from 'react-hook-form';
-import { useHistory } from "react-router-dom";
 
 import { Card,Button, TextField } from '@material-ui/core';
 
 import { ReactComponent as Close } from "../../assets/close.svg";
+import { AuthContext } from '../../contexts/AuthContext';
 import PasswordInput from '../Passwordinput';
 import useStyles from './styles';
 
@@ -12,34 +12,50 @@ function FormEditar({ setRequestError, setIsLoading, onClose }) {
 
     const classes = useStyles();
     const { handleSubmit, register, formState: { errors } } = useForm();
-    const history = useHistory();
+    const { token } = useContext(AuthContext);
+    const [ usuario, setUsuario ] = useState({
+        nome:'',email:'',telefone:'',cpf:''
+    });
+    
+    useEffect(()=>{
+        async function carregarUsuario(token) {
+            const resposta = await fetch('https://api-desafio-5.herokuapp.com/perfil', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
 
-    async function entrar(data) {
+            const usuarioRetornado = await resposta.json();
+
+            setUsuario(usuarioRetornado);
+        }
+
+        carregarUsuario();
+    },[]);
+
+    async function editar(data) {
 
         setRequestError('');
         setIsLoading(true);
 
-        const resposta = await fetch('https://desafio-m03.herokuapp.com/usuarios', {
-            method: 'POST',
-            body: JSON.stringify(data),
+        const dadosAtualizados = Object.fromEntries(Object.entries(data).filter(([,value])=>value));
+
+        await fetch('https://api-desafio-5.herokuapp.com/perfil', {
+            method: 'PUT',
+            body: JSON.stringify(dadosAtualizados),
             headers: {
-                'Content-type': 'application/json'
+                'Content-type': 'application/json',
+                'Authorization': `Bearer ${token}`
             }
         });
-
-        setIsLoading(false);
-
-        const dados = await resposta.json();
-
-        console.log(dados);
-
-        if (resposta.ok) {
-            history.push('/');
-            return;
-        }
-
-        setRequestError(dados);
+    
+        onClose();
+        
     }
+
+    const handleChange = (event) => {
+        setUsuario(event.target.value);
+    };
 
     return (
 
@@ -48,40 +64,45 @@ function FormEditar({ setRequestError, setIsLoading, onClose }) {
                 className={classes.form}
                 noValidate
                 autoComplete="off"
-                onSubmit={handleSubmit(entrar)}
+                onSubmit={handleSubmit(editar)}
             >
                 <div className={classes.close} >
                     <Close onClick={onClose}/>
                 </div>
-                <h1 className={classes.tituloEditar}>EDITAR USUÁRIO</h1>
+                <h1 className={classes.tituloEditar}>//EDITAR USUÁRIO</h1>
                 <TextField className={classes.nome}
                     label="Nome"
                     error={!!errors.nome}
-                    {...register('nome', { required: true })}
+                    value={usuario.nome}
+                    onChange={handleChange}
+                    {...register('nome')}
 
                 />
                 <TextField className={classes.email}
                     label="E-mail"
                     error={!!errors.email}
-                    {...register('email', { required: true })}
+                    value={usuario.email}
+                    {...register('email')}
 
                 />
                 <PasswordInput
                     label="Nova senha"
                     id="senha"
                     error={!!errors.senha}
-                    register={() => register('senha', { required: true })}
+                    register={() => register('senha')}
                 />
                 <TextField className={classes.telefone}
                     label="Telefone"
                     error={!!errors.telefone}
-                    {...register('telefone', { required: true })}
+                    value={usuario.telefone}
+                    {...register('telefone')}
 
                 />
                 <TextField className={classes.cpf}
                     label="CPF"
                     error={!!errors.cpf}
-                    {...register('email', { required: true })}
+                    value={usuario.cpf}
+                    {...register('email')}
 
                 />
                 <Button className={classes.botao} type="submit">
