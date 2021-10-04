@@ -69,7 +69,7 @@ function FormEditar({ setRequestError, setIsLoading, onClose }) {
                 <div className={classes.close} >
                     <Close onClick={onClose}/>
                 </div>
-                <h1 className={classes.tituloEditar}>//EDITAR USUÁRIO</h1>
+                <h1 className={classes.tituloEditar}>EDITAR USUÁRIO</h1>
                 <TextField className={classes.nome}
                     label="Nome"
                     error={!!errors.nome}

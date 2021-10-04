@@ -17,7 +17,7 @@ export default function Clientes() {
 
   return (
     <div className={classes.root}>
-      <h1 className={classes.tituloEditar}>// ADICIONAR CLIENTE</h1>
+      <h1 className={classes.tituloEditar}>ADICIONAR CLIENTE</h1>
       <FormCliente setRequestError={setRequestError} setIsLoading={setIsLoading} />
       <Backdrop className={classes.backdrop} open={isLoading}>
         <CircularProgress color="inherit" />
