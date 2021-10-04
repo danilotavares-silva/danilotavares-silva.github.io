@@ -58,7 +58,6 @@ function FormEditar({ setRequestError, setIsLoading, onClose }) {
     };
 
     return (
-
         <Card className={classes.card}>
             <form
                 className={classes.form}
