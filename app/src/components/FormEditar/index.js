@@ -11,14 +11,15 @@ import useStyles from './styles';
 function FormEditar({ setRequestError, setIsLoading, onClose }) {
 
     const classes = useStyles();
-    const { handleSubmit, register, formState: { errors } } = useForm();
-    const { token } = useContext(AuthContext);
+    const { handleSubmit, register, formState: { errors }, setValue } = useForm();
     const [ usuario, setUsuario ] = useState({
         nome:'',email:'',telefone:'',cpf:''
     });
-    
+    const token = localStorage.getItem('token')
+
+
     useEffect(()=>{
-        async function carregarUsuario(token) {
+        async function carregarUsuario() {
             const resposta = await fetch('https://api-desafio-5.herokuapp.com/perfil', {
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -26,17 +27,19 @@ function FormEditar({ setRequestError, setIsLoading, onClose }) {
             });
 
             const usuarioRetornado = await resposta.json();
+            console.log(usuarioRetornado);
 
-            setUsuario(usuarioRetornado);
+            setValue('nome',usuarioRetornado.nome);
+            setValue('email',usuarioRetornado.email);
+            setValue('cpf',usuarioRetornado.cpf);
+            setValue('telefone',usuarioRetornado.telefone);
         }
-
         carregarUsuario();
     },[]);
 
     async function editar(data) {
 
-        setRequestError('');
-        setIsLoading(true);
+        
 
         const dadosAtualizados = Object.fromEntries(Object.entries(data).filter(([,value])=>value));
 
@@ -53,15 +56,10 @@ function FormEditar({ setRequestError, setIsLoading, onClose }) {
         
     }
 
-    const handleChange = (event) => {
-        setUsuario(event.target.value);
-    };
-
     return (
         <Card className={classes.card}>
             <form
                 className={classes.form}
-                noValidate
                 autoComplete="off"
                 onSubmit={handleSubmit(editar)}
             >
@@ -72,17 +70,13 @@ function FormEditar({ setRequestError, setIsLoading, onClose }) {
                 <TextField className={classes.nome}
                     label="Nome"
                     error={!!errors.nome}
-                    value={usuario.nome}
-                    onChange={handleChange}
                     {...register('nome')}
-
                 />
                 <TextField className={classes.email}
+                    variant='filled'
                     label="E-mail"
                     error={!!errors.email}
-                    value={usuario.email}
-                    {...register('email')}
-
+                    {...register('email', { required: true })}
                 />
                 <PasswordInput
                     label="Nova senha"
@@ -93,15 +87,13 @@ function FormEditar({ setRequestError, setIsLoading, onClose }) {
                 <TextField className={classes.telefone}
                     label="Telefone"
                     error={!!errors.telefone}
-                    value={usuario.telefone}
                     {...register('telefone')}
 
                 />
                 <TextField className={classes.cpf}
                     label="CPF"
                     error={!!errors.cpf}
-                    value={usuario.cpf}
-                    {...register('email')}
+                    {...register('cpf')}
 
                 />
                 <Button className={classes.botao} type="submit">

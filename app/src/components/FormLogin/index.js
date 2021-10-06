@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form';
 import { useHistory } from "react-router-dom";
 
@@ -7,13 +7,12 @@ import { Button, TextField } from '@material-ui/core';
 import PasswordInput from '../Passwordinput';
 import { AuthContext } from '../../contexts/AuthContext';
 import { ReactComponent as LogoBlack } from "../../assets/logoblack.svg";
-import useStyles from '../../pages/Login/styles';
+import useStyles from './styles';
 
 function FormLogin({ setRequestError, setIsLoading }) {
 
     const classes = useStyles();
-    const { logar } = useContext(AuthContext);
-    const { handleSubmit, register, formState: { errors } } = useForm();
+    const { handleSubmit, register, formState: { errors }, watch } = useForm();
     const history = useHistory();
 
     async function entrar(data) {
@@ -33,10 +32,8 @@ function FormLogin({ setRequestError, setIsLoading }) {
 
         const dados = await resposta.json();
 
-        console.log(dados);
-
         if (resposta.ok) {
-            logar(dados.token);
+            localStorage.setItem(`token`,dados.token);
             history.push('/home');
             return;
         }
@@ -44,12 +41,15 @@ function FormLogin({ setRequestError, setIsLoading }) {
         setRequestError(dados);
     }
 
+    
+
     return (
         <form className={classes.form} onSubmit={handleSubmit(entrar)}>
             <div className={classes.logo}>
                 <LogoBlack />
             </div>
             <TextField className={classes.email}
+                placeholder="Placeholder"
                 label="E-mail"
                 error={!!errors.email}
                 {...register('email', { required: true })}
@@ -60,7 +60,7 @@ function FormLogin({ setRequestError, setIsLoading }) {
                 error={!!errors.senha}
                 register={() => register('senha', { required: true })}
             />
-            <Button type="submit" className={classes.botao} >
+            <Button type="submit" className={`${classe ? classes.botaoAtivo : classes.botao}`} >
                 Entrar
             </Button>
         </form>

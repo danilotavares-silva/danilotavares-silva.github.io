@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect} from 'react'
 import { useForm } from 'react-hook-form';
 import { useHistory } from "react-router-dom";
 
@@ -6,12 +6,12 @@ import { Button, TextField } from '@material-ui/core';
 
 import PasswordInput from '../Passwordinput';
 import { ReactComponent as LogoBlack } from "../../assets/logoblack.svg";
-import useStyles from '../../pages/Cadastro/styles';
+import useStyles from './styles';
 
 function FormCadastro({ setRequestError, setIsLoading }) {
 
     const classes = useStyles();
-    const { handleSubmit, register, formState: { errors } } = useForm();
+    const { handleSubmit, register, formState: { errors }, watch } = useForm();
     const history = useHistory();
 
     async function entrar(data){
@@ -40,6 +40,15 @@ function FormCadastro({ setRequestError, setIsLoading }) {
 
         setRequestError(dados);
     }
+    const reqNome = watch('nome');
+    const reqEmail = watch('email');
+    const reqSenha = watch('senha');
+    const [classe,setClasse]=useState(false);
+
+    useEffect(()=>{
+        setClasse(false);
+        if(reqNome && reqEmail && reqSenha) setClasse(true);
+    },[reqNome,reqEmail,reqSenha]);
 
     return (
         <form
@@ -69,7 +78,7 @@ function FormCadastro({ setRequestError, setIsLoading }) {
                 error={!!errors.senha}
                 register={() => register('senha', { required: true })}
             />
-            <Button className={classes.botao} type="submit">
+            <Button type="submit" className={`${classe ? classes.botaoAtivo : classes.botao}`}>
                 Criar conta
             </Button>
         </form>

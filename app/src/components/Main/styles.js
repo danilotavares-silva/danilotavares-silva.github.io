@@ -6,7 +6,6 @@ const useStyles = makeStyles(() => ({
     },
 
     header: {
-        
         display: 'flex',
         justifyContent: 'flex-end',
         padding: "32px 56px 0px 0px"
@@ -14,9 +13,10 @@ const useStyles = makeStyles(() => ({
     
     container: {
         backgroundColor:'#E5E5E5',
-        width: '100%',
+        flexGrow: 1,
         display: 'flex',
         flexDirection: 'column',
+        marginLeft:264,
     },
 }));
 

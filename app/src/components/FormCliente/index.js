@@ -12,7 +12,7 @@ function FormCliente({ setRequestError, setIsLoading }) {
     const classes = useStyles();
     const { handleSubmit, register, formState: { errors } } = useForm();
     const history = useHistory();
-    const { token } = useContext(AuthContext);
+    const token = localStorage.getItem('token')
 
 
     function onClose(){
@@ -55,6 +55,7 @@ function FormCliente({ setRequestError, setIsLoading }) {
             onSubmit={handleSubmit(entrar)}
         >
             <div className={classes.grid}>
+
                 <label className={classes.nome}>Nome:
                     <input
                         error={!!errors.nome}

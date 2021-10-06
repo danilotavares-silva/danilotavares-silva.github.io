@@ -9,7 +9,7 @@ export default function Main({children}) {
 
     return (
         <div className={classes.root}>
-            <Sidebar />
+            <Sidebar className={classes.sideBar}/>
             <div className={classes.container}>
                 <div className={classes.header}>
                     <MenuListComposition className={classes.iconPerfil} />

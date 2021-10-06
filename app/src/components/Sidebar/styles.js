@@ -12,6 +12,7 @@ const useStyles = makeStyles(() => ({
             textAlign: 'center',
             color: "#263238",
         },
+        position:'fixed',
     },
 
     logo:{
