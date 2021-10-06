@@ -11,20 +11,13 @@ const useStyles = makeStyles(() => ({
     },
 
     input:{
-        fontSize:14,
+        borderRadius:8,
+        fontSize:12,
         color:'#4C4C4C',
-        padding:"15px",
-        borderBottom:"1px solid #4C4C4C",
+        padding:"12px",
+        border:"1px solid #4C4C4C",
         marginBottom: 79,
         fontFamily:'Montserrat'
-    },
-    inputMaior:{
-        fontSize:14,
-        color:'#4C4C4C',
-        padding:"15px",
-        borderBottom:"1px solid #4C4C4C",
-        marginBottom: 79,
-        fontFamily:'Lucida Console'
     },
     
 }));

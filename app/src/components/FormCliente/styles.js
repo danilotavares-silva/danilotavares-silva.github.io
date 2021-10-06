@@ -1,23 +1,12 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
-    grid:{
-        display:'grid',
+    container:{
+        display:'flex',
+        flexDirection:'column'
         
     },
-
-    nome:{
-        gridArea:'nome'
-    },
-    email:{
-        gridArea:'email'
-    },
-    cpf:{
-        gridArea:'cpf'
-    },
-    telefone:{
-        gridArea:'telefone'
-    },
+    
     
 
     botao:{

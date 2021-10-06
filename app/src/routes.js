@@ -30,14 +30,14 @@ function Routes() {
             <Router>
                 <Switch>
                     <Route path="/" exact component={Login}/>
-                    {/* <Route path="/cadastro" component={Cadastro}/>
+                    <Route path="/cadastro" component={Cadastro}/>
                     <RotasProtegidas>
                         <Main>
                             <Route path= "/home" exact component={Home}/>
                             <Route path= "/cobrancas" exact component={Cobrancas}/>
                             <Route path= "/clientes" exact component={Clientes}/>
                         </Main>
-                    </RotasProtegidas> */}
+                    </RotasProtegidas>
                     
                 </Switch>
             </Router> 

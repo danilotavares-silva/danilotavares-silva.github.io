@@ -5,13 +5,16 @@ import Button from '@mui/material/Button';
 import FormEditar from "../FormEditar"
 import { Box } from '@material-ui/core';
 import Modal from '@mui/material/Modal';
+import { ReactComponent as Deslogar } from "../../assets/deslogar.svg";
 import { ReactComponent as Editar } from "../../assets/editar.svg";
+import { useHistory } from 'react-router';
 
 function BasicModal() {
   
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  
 
   return (
     <div>
@@ -41,7 +44,7 @@ function BasicModal() {
 export default function MenuListComposition() {
   
   const [anchorEl, setAnchorEl] = React.useState(null);
-
+  const history = useHistory();
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -49,7 +52,10 @@ export default function MenuListComposition() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  function deslogar(){
+    localStorage.removeItem('token');
+    history.push("/");
+  }
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
@@ -69,6 +75,7 @@ export default function MenuListComposition() {
         }}
       >
         <BasicModal/>
+        <Deslogar onClick={()=>{deslogar()}}/>
       </Popover>
     </div>
   );

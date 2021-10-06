@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
     
     container: {
         backgroundColor:'#E5E5E5',
-        flexGrow: 1,
+        width:"100%",
         display: 'flex',
         flexDirection: 'column',
         marginLeft:264,

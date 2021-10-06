@@ -65,6 +65,9 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: 20,
         textTransform:'none',
         backgroundColor: "rgba(218, 1, 117)",
+        "&:hover":{
+            backgroundColor: "rgba(218, 1, 117)",
+        },
     },
 
     backdrop: {

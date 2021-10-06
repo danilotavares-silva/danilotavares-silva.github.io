@@ -1,11 +1,11 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { useForm } from 'react-hook-form';
 import { useHistory } from "react-router-dom";
-import { AuthContext } from '../../contexts/AuthContext';
 
 import { Button } from '@material-ui/core';
 
 import useStyles from './styles';
+import TextInputCliente from '../TextInputCliente';
 
 function FormCliente({ setRequestError, setIsLoading }) {
 
@@ -54,77 +54,78 @@ function FormCliente({ setRequestError, setIsLoading }) {
             autoComplete="off"
             onSubmit={handleSubmit(entrar)}
         >
-            <div className={classes.grid}>
+            <div className={classes.container}>
 
-                <label className={classes.nome}>Nome:
-                    <input
-                        error={!!errors.nome}
-                        {...register('nome', { required: true })}
-                    />
-                </label>
-                <label className={classes.email}>
-                    E-mail:
-                    <input
+                <TextInputCliente className={classes.nome}
+                        placeholder="Nome do cliente"
+                        label="Nome"
                         error={!!errors.email}
-                        {...register('email', { required: true })}
+                        register={() => register('email', { required: true })}
+                     />
+                <TextInputCliente className={classes.email}
+                        placeholder="email@email.com"
+                        label="Email"
+                        error={!!errors.email}
+                        register={() => register('email', { required: true })}
                     />
-                </label>
-                <label className={classes.cpf}>
-                    CPF:
-                    <input
-                        error={!!errors.cpf}
-                        {...register('cpf', { required: true })}
+                <div className={classes.linha}>
+                    <TextInputCliente className={classes.nome}
+                        placeholder="Nome do cliente"
+                        label="Nome"
+                        error={!!errors.email}
+                        register={() => register('email', { required: true })}
                     />
-                </label>
-                <label className={classes.telefone}>
-                    Telefone:
-                    <input
-                        error={!!errors.telefone}
-                        {...register('telefone', { required: true })}
+                    <TextInputCliente className={classes.email}
+                        placeholder="email@email.com"
+                        label="Email"
+                        error={!!errors.email}
+                        register={() => register('email', { required: true })}
                     />
-                </label>
-                <label className={classes.cep}>
-                    CEP:
-                    <input
-                        error={!!errors.cep}
-                        {...register('cep', { required: true })}
+                </div>
+                <div className={classes.linha}>
+                    <TextInputCliente className={classes.nome}
+                        placeholder="Nome do cliente"
+                        label="Nome"
+                        error={!!errors.email}
+                        register={() => register('email', { required: true })}
                     />
-                </label>
-                <label className={classes.logradouro}>
-                    Logradouro
-                    <input
-                        error={!!errors.logradouro}
-                        {...register('logradouro', { required: true })}
+                    <TextInputCliente className={classes.email}
+                        placeholder="email@email.com"
+                        label="Email"
+                        error={!!errors.email}
+                        register={() => register('email', { required: true })}
                     />
-                </label>
-                <label className={classes.bairro}>
-                    Bairro
-                    <input
-                        error={!!errors.bairro}
-                        {...register('bairro', { required: true })}
+                </div>
+                <div className={classes.linha}>
+                    <TextInputCliente className={classes.nome}
+                        placeholder="Nome do cliente"
+                        label="Nome"
+                        error={!!errors.email}
+                        register={() => register('email', { required: true })}
                     />
-                </label>
-                <label className={classes.cidade}>
-                    Cidade
-                    <input
-                        error={!!errors.cidade}
-                        {...register('cidade', { required: true })}
+                    <TextInputCliente className={classes.email}
+                        placeholder="email@email.com"
+                        label="Email"
+                        error={!!errors.email}
+                        register={() => register('email', { required: true })}
                     />
-                </label>
-                <label className={classes.complemento}>
-                    Complemento
-                    <input
-                        error={!!errors.complemento}
-                        {...register('complemento', { required: true })}
+                </div>
+                <div className={classes.linha}>
+                    <TextInputCliente className={classes.nome}
+                        placeholder="Nome do cliente"
+                        label="Nome"
+                        error={!!errors.email}
+                        register={() => register('email', { required: true })}
                     />
-                </label>
-                <label className={classes.pontoReferencia}>
-                    Ponto de Referência
-                    <input
-                        error={!!errors.ponto_de_referencia}
-                        {...register('ponto_de_referencia')}
+                    <TextInputCliente className={classes.email}
+                        placeholder="email@email.com"
+                        label="Email"
+                        error={!!errors.email}
+                        register={() => register('email', { required: true })}
                     />
-                </label>
+                </div>
+                
+               
             </div>
             <div>
                 <Button className={classes.botao} onClick={onClose}>

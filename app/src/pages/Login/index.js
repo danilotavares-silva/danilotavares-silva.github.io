@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from "react-router-dom"
 
-import { Card, Typography, Backdrop, CircularProgress, Snackbar, TextField, Button } from '@material-ui/core';
+import { Card, Typography, Backdrop, CircularProgress, Snackbar, Button } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 
 import useStyles from "./styles.js"
@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 
 import { ReactComponent as LogoBlack } from "../../assets/logoblack.svg";
 import PasswordInput from '../../components/Passwordinput/index.js';
+import TextInput from '../../components/TextInput/index.js';
 
 export default function Login() {
 
@@ -29,7 +30,7 @@ export default function Login() {
         if(token){
             history.push('/home');
         }
-    },[])
+    },[history, token])
 
     useEffect(()=>{
         setClasse(false);
@@ -37,7 +38,6 @@ export default function Login() {
     },[reqEmail,reqSenha]);
     
     
-
     async function entrar(data) {
 
         setRequestError('');
@@ -54,7 +54,7 @@ export default function Login() {
         setIsLoading(false);
 
         const dados = await resposta.json();
-
+    
         if (resposta.ok) {
             localStorage.setItem(`token`,dados.token);
             history.push('/home');
@@ -75,11 +75,11 @@ export default function Login() {
                     <div className={classes.logo}>
                         <LogoBlack />
                     </div>
-                    <TextField className={classes.email}
-                        placeholder="Placeholder"
+                    <TextInput className={classes.email}
+                        placeholder="exemplo@gmail.com"
                         label="E-mail"
                         error={!!errors.email}
-                        {...register('email', { required: true })}
+                        register={() => register('email', { required: true })}
                     />
                     <PasswordInput
                         label="Senha"
@@ -92,14 +92,21 @@ export default function Login() {
                     </Button>
                 </form>
             </Card>
+            
             <Backdrop className={classes.backdrop} open={isLoading}>
                 <CircularProgress color="inherit" />
             </Backdrop>
-            <Snackbar open={!!requestError} autoHideDuration={10000} onClose={handleOnAlertClose}>
+            <Snackbar 
+            open={!!requestError} 
+            autoHideDuration={4000} 
+            onClose={handleOnAlertClose}
+            anchorOrigin={{ vertical: 'top', horizontal:'right' }}
+            >
                 <Alert variant="filled" onClose={handleOnAlertClose} severity="error">
                     {requestError}
                 </Alert>
             </Snackbar>
+           
             <Typography variant="body2">
                 Não tem uma conta? <Link className={classes.link} to='/cadastro'>Cadastre-se</Link>
             </Typography>

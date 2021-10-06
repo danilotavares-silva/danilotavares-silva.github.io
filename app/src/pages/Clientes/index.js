@@ -4,7 +4,6 @@ import FormCliente from "../../components/FormCliente"
 import { Backdrop, CircularProgress, Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import useStyles from "./styles.js"
-import FormEditar from '../../components/FormEditar';
 
 export default function Clientes() {
 
@@ -20,15 +19,6 @@ export default function Clientes() {
   return (
     <div className={classes.root}>
       <h1 className={classes.tituloEditar}>// ADICIONAR CLIENTE</h1>
-      
-      <FormCliente setRequestError={setRequestError} setIsLoading={setIsLoading} />
-      <FormCliente setRequestError={setRequestError} setIsLoading={setIsLoading} />
-      <FormCliente setRequestError={setRequestError} setIsLoading={setIsLoading} />
-      <FormCliente setRequestError={setRequestError} setIsLoading={setIsLoading} />
-      <FormCliente setRequestError={setRequestError} setIsLoading={setIsLoading} />
-      <FormCliente setRequestError={setRequestError} setIsLoading={setIsLoading} />
-      <FormCliente setRequestError={setRequestError} setIsLoading={setIsLoading} />
-      <FormCliente setRequestError={setRequestError} setIsLoading={setIsLoading} />
       <FormCliente setRequestError={setRequestError} setIsLoading={setIsLoading} />
       <Backdrop className={classes.backdrop} open={isLoading}>
         <CircularProgress color="inherit" />

@@ -7,28 +7,33 @@ import "./styles"
 
 function PasswordInput(props) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
   const classes = useStyles();
   return (
     <FormControl>
-      <InputLabel 
-        htmlFor={props.id}
+      <InputLabel  
+        className={classes.inputLabel}
+        shrink
         error={props.error}
+        htmlFor={props.id}
       >
       {props.label}
       </InputLabel>
       <Input 
-        className={classes.input}
+        className={`${isPasswordVisible ? classes.input : classes.inputMaior}`}
         id={props.id} 
         type={isPasswordVisible ? "text" : "password"}
         error={props.error}
         {...props.register()}
+        disableUnderline={true}
         endAdornment={
           <InputAdornment position="end">
             <IconButton
+              
               aria-label="toggle password visibility"
               onClick={() => setIsPasswordVisible(!isPasswordVisible)}
             >
-              {isPasswordVisible ? <Visibility/> : <VisibilityOff />}
+              {isPasswordVisible ? <Visibility color='disabled'/> : <VisibilityOff color='disabled' />}
             </IconButton>
           </InputAdornment>
         }
