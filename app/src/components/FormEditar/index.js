@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form';
 
 import { Card,Button, TextField } from '@material-ui/core';
 
 import { ReactComponent as Close } from "../../assets/close.svg";
-import { AuthContext } from '../../contexts/AuthContext';
 import PasswordInput from '../Passwordinput';
 import useStyles from './styles';
 
@@ -12,9 +11,6 @@ function FormEditar({ setRequestError, setIsLoading, onClose }) {
 
     const classes = useStyles();
     const { handleSubmit, register, formState: { errors }, setValue } = useForm();
-    const [ usuario, setUsuario ] = useState({
-        nome:'',email:'',telefone:'',cpf:''
-    });
     const token = localStorage.getItem('token')
 
 
@@ -35,7 +31,7 @@ function FormEditar({ setRequestError, setIsLoading, onClose }) {
             setValue('telefone',usuarioRetornado.telefone);
         }
         carregarUsuario();
-    },[]);
+    },[setValue, token]);
 
     async function editar(data) {
 

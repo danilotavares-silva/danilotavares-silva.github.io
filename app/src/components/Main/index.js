@@ -2,7 +2,7 @@ import React from "react";
 
 import useStyles from "./styles.js";
 import Sidebar from '../Sidebar';
-import MenuListComposition from "../../components/MenuListComposition";
+import Menu from "../../components/Menu";
 
 export default function Main({children}) {
     const classes = useStyles();
@@ -12,7 +12,7 @@ export default function Main({children}) {
             <Sidebar className={classes.sideBar}/>
             <div className={classes.container}>
                 <div className={classes.header}>
-                    <MenuListComposition className={classes.iconPerfil} />
+                    <Menu className={classes.iconPerfil} />
                 </div>
                 {children}
             </div>

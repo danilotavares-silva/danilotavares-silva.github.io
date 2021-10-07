@@ -7,20 +7,23 @@ import { Box } from '@material-ui/core';
 import Modal from '@mui/material/Modal';
 import { ReactComponent as Deslogar } from "../../assets/deslogar.svg";
 import { ReactComponent as Editar } from "../../assets/editar.svg";
+import { ReactComponent as IconPerfil } from "../../assets/iconPerfil.svg";
 import { useHistory } from 'react-router';
+import useStyles from "./styles.js";
+
 
 function BasicModal() {
-  
+  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   
-
   return (
     <div>
-      <Button onClick={handleOpen}>
+      <Button className={classes.editar} onClick={handleOpen}>
         <Editar />
-        <Typography sx={{textTransform:'none'}} variant="caption" >
+        <Typography sx={{textTransform:'none',
+        color:'black'}} variant="caption" >
           Editar
         </Typography>
       </Button>
@@ -41,8 +44,8 @@ function BasicModal() {
   );
 }
 
-export default function MenuListComposition() {
-  
+export default function Menu() {
+  const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const history = useHistory();
   const handleClick = (event) => {
@@ -61,9 +64,7 @@ export default function MenuListComposition() {
 
   return (
     <div>
-      <Button aria-describedby={id} variant="contained" onClick={handleClick}>
-        Open Popover
-      </Button>
+      <IconPerfil className={classes.iconPerfil} onClick={handleClick} />
       <Popover
         id={id}
         open={open}
@@ -71,11 +72,34 @@ export default function MenuListComposition() {
         onClose={handleClose}
         anchorOrigin={{
           vertical: 'bottom',
-          horizontal: 'left',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
         }}
       >
-        <BasicModal/>
-        <Deslogar onClick={()=>{deslogar()}}/>
+        <Box
+          sx={{
+            colo: 'black',
+            display: 'flex',
+            flexDirection:'column',
+            width: 100,
+            height: 93,
+            padding:'17px 0px 0px 10px',
+            gap:24
+          }}
+        >
+          <BasicModal />
+          <div className={classes.deslogar}>
+            <Deslogar onClick={() => { deslogar() }} />
+            <Typography sx={{ textTransform: 'none' }} variant="caption" >
+              Deslogar
+            </Typography>
+          </div>
+        </Box>
+
+
       </Popover>
     </div>
   );
