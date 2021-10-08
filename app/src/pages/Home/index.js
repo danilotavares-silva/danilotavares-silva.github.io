@@ -4,15 +4,15 @@ import CardClientes from "../../components/CardClientes/index.js";
 import CardCobrancas from "../../components/CardCobrancas/index.js";
 
 export default function Home() {
-  const classes = useStyles(); 
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <div>
-        <CardClientes/>
+        <CardClientes />
       </div>
       <div>
-        <CardCobrancas/>
+        <CardCobrancas />
       </div>
     </div>
   );

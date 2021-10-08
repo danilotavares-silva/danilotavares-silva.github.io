@@ -11,9 +11,8 @@ const useStyles = makeStyles(() => ({
         display: 'flex',
         flexDirection: 'column',
     },
-    deslogar: {
-        display: 'flex',
-        flexAlignItems: 'center'
+    lineMenu: {
+        display: 'flex'
     }
 }));
 
