@@ -7,7 +7,7 @@ export default function Home() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div className={classes.containerHome}>
       <div>
         <CardClientes />
       </div>
